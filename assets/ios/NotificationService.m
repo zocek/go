@@ -51,6 +51,11 @@
 
     BOOL ttsEnabled        = NO;
     BOOL isBip177          = NO;
+    // app language mirrored by lib/notificationsNativeStorage.ts: `language` is the
+    // locales/<code> directory name (= <code>.lproj of this extension), `languageTag`
+    // the BCP-47 tag of that language
+    NSString *language     = @"en";
+    NSString *languageTag  = @"en-US";
     NSDictionary *settingsDict = [sharedDefaults objectForKey:@"settings"];
     if ([settingsDict isKindOfClass:[NSDictionary class]]) {
       NSDictionary *settings = [settingsDict objectForKey:@"settings"];
@@ -60,6 +65,17 @@
       ttsEnabled = [settingsDict[@"ttsEnabled"] boolValue];
       NSString *bitcoinDisplayMode = settingsDict[@"bitcoinDisplayFormat"];
       isBip177 = [bitcoinDisplayMode isEqualToString:@"bip177"];
+      NSString *storedLanguage = settingsDict[@"language"];
+      if ([storedLanguage isKindOfClass:[NSString class]] && storedLanguage.length > 0) {
+        language = storedLanguage;
+        if (![language isEqualToString:@"en"]) {
+          languageTag = language;
+        }
+      }
+      NSString *storedLanguageTag = settingsDict[@"languageTag"];
+      if ([storedLanguageTag isKindOfClass:[NSString class]] && storedLanguageTag.length > 0) {
+        languageTag = storedLanguageTag;
+      }
     }
 
     NSDictionary *walletInfo = walletsDict[appPubkey];
@@ -148,17 +164,34 @@
     NSMutableDictionary *newUserInfo = [self.bestAttemptContent.userInfo mutableCopy] ?: [NSMutableDictionary dictionary];
     NSMutableDictionary *newBodyDict = [newUserInfo[@"body"] mutableCopy] ?: [NSMutableDictionary dictionary];
 
+    // Texts come from <language>.lproj/Localizable.strings and Localizable.stringsdict of
+    // this extension, generated from locales/<code>/notifications.json by
+    // plugins/withNotificationLocales.js. Without an .lproj for the app language the
+    // bundle's own lookup applies (device language, then the "en" development region).
+    NSString *lprojPath = [[NSBundle mainBundle] pathForResource:language ofType:@"lproj"];
+    NSBundle *stringsBundle = lprojPath ? [NSBundle bundleWithPath:lprojPath] : nil;
+    if (!stringsBundle) {
+        stringsBundle = [NSBundle mainBundle];
+    }
+
     NSString *action = @"";
     if ([notificationType isEqualToString:@"payment_sent"]) {
-        action = @"Sent";
+        action = NSLocalizedStringFromTableInBundle(@"notification_sent", @"Localizable", stringsBundle, nil);
     } else if ([notificationType isEqualToString:@"payment_received"]) {
-        action = @"Received";
+        action = NSLocalizedStringFromTableInBundle(@"notification_received", @"Localizable", stringsBundle, nil);
     } else if ([notificationType isEqualToString:@"hold_invoice_accepted"]) {
-        action = @"Payment Held:";
+        action = NSLocalizedStringFromTableInBundle(@"notification_payment_held", @"Localizable", stringsBundle, nil);
     }
 
     double amountInSats = [amountNumber doubleValue] / 1000.0;
-    NSString *formattedAmount = isBip177 ? [NSString stringWithFormat:@"₿ %.0f", amountInSats] : [NSString stringWithFormat:@"%.0f sats", amountInSats];
+    // The unit word is a plural from Localizable.stringsdict; the format consumes the
+    // amount only to pick the category. rint() rounds the same way as the "%.0f" used
+    // to print the amount, and the locale of the app language (not the device locale)
+    // selects the plural rule.
+    NSString *satsUnitFormat = NSLocalizedStringFromTableInBundle(@"notification_sats", @"Localizable", stringsBundle, nil);
+    NSLocale *languageLocale = [NSLocale localeWithLocaleIdentifier:languageTag];
+    NSString *satsUnit = [[NSString alloc] initWithFormat:satsUnitFormat locale:languageLocale, (long)rint(amountInSats)];
+    NSString *formattedAmount = isBip177 ? [NSString stringWithFormat:@"₿ %.0f", amountInSats] : [NSString stringWithFormat:@"%.0f %@", amountInSats, satsUnit];
 
     NSString *descriptionText = notificationDict[@"description"];
     if (![descriptionText isKindOfClass:[NSString class]] || descriptionText.length == 0) {
@@ -184,8 +217,8 @@
     self.bestAttemptContent.body  = notificationText;
 
     if ([notificationType isEqualToString:@"payment_received"] && ttsEnabled) {
-        NSString *speechText = [NSString stringWithFormat:@"%.0f sats", amountInSats];
-        [self handleTextToSpeech:speechText contentHandler:contentHandler];
+        NSString *speechText = [NSString stringWithFormat:@"%.0f %@", amountInSats, satsUnit];
+        [self handleTextToSpeech:speechText languageTag:languageTag contentHandler:contentHandler];
     } else {
         self.contentHandler(self.bestAttemptContent);
     }
@@ -196,10 +229,15 @@
     self.contentHandler(self.bestAttemptContent);
 }
 
-- (void)handleTextToSpeech:(NSString *)speechText contentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
+- (void)handleTextToSpeech:(NSString *)speechText languageTag:(NSString *)languageTag contentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
     self.synthesizer = [[AVSpeechSynthesizer alloc] init];
     self.synthesizer.delegate = self;
     AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:speechText];
+    // nil when no voice for the app language is installed, which keeps the default voice
+    AVSpeechSynthesisVoice *voice = [AVSpeechSynthesisVoice voiceWithLanguage:languageTag];
+    if (voice) {
+        utterance.voice = voice;
+    }
     __block AVAudioFile *audioFile;
     NSString *audioName = @"tts.caf";
     NSFileManager *fileMan = [NSFileManager defaultManager];

@@ -4,6 +4,7 @@ import path from "path";
 import withIncreasedGradleHeap from "./plugins/android/withIncreasedGradleHeap";
 import withMessagingServicePlugin from "./plugins/android/withMessageServicePlugin";
 import withOpenSSLPlugin from "./plugins/ios/withOpenSSLPlugin";
+import withNotificationLocales from "./plugins/withNotificationLocales";
 
 // translations of the iOS permission dialog texts set by the plugins below:
 // every locales/native/<code>.json is picked up, nothing to register here
@@ -52,6 +53,10 @@ export default ({ config }) => {
       ],
       [withOpenSSLPlugin],
       [withIncreasedGradleHeap],
+      // generates the native notification strings/plurals from locales/*/notifications.json;
+      // must be listed BEFORE expo-notification-service-extension-plugin (Expo runs the mods
+      // of later-listed plugins first and this one needs the NSE target to exist)
+      [withNotificationLocales],
       [
         "expo-notification-service-extension-plugin",
         {

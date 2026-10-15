@@ -1,0 +1,9 @@
+{
+  "sent": "Odesláno",
+  "received": "Přijato",
+  "paymentHeld": "Platba pozastavena:",
+  "sats_one": "sat",
+  "sats_few": "saty",
+  "sats_many": "satu",
+  "sats_other": "satů"
+}

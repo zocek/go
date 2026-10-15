@@ -4,6 +4,7 @@ import csCommon from "./cs/common.json";
 import csErrors from "./cs/errors.json";
 import csHome from "./cs/home.json";
 import csMap from "./cs/map.json";
+import csNotifications from "./cs/notifications.json";
 import csOnboarding from "./cs/onboarding.json";
 import csReceive from "./cs/receive.json";
 import csSend from "./cs/send.json";
@@ -15,6 +16,7 @@ import enCommon from "./en/common.json";
 import enErrors from "./en/errors.json";
 import enHome from "./en/home.json";
 import enMap from "./en/map.json";
+import enNotifications from "./en/notifications.json";
 import enOnboarding from "./en/onboarding.json";
 import enReceive from "./en/receive.json";
 import enSend from "./en/send.json";
@@ -47,6 +49,7 @@ export const resources = {
       errors: enErrors,
       home: enHome,
       map: enMap,
+      notifications: enNotifications,
       onboarding: enOnboarding,
       receive: enReceive,
       send: enSend,
@@ -62,6 +65,7 @@ export const resources = {
       errors: csErrors,
       home: csHome,
       map: csMap,
+      notifications: csNotifications,
       onboarding: csOnboarding,
       receive: csReceive,
       send: csSend,

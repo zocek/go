@@ -5,6 +5,8 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
@@ -35,6 +37,8 @@ class MessagingService : FirebaseMessagingService(), OnInitListener {
 
     companion object {
         private const val TAG = "AlbyHubMessagingService"
+        private const val DEFAULT_LANGUAGE = "en"
+        private const val DEFAULT_LANGUAGE_TAG = "en-US"
     }
 
     override fun onCreate() {
@@ -79,6 +83,45 @@ class MessagingService : FirebaseMessagingService(), OnInitListener {
           e.printStackTrace()
           return ""
       }
+    }
+
+    // app language mirrored by lib/notificationsNativeStorage.ts: `language` is the
+    // locales/<code> directory name, `languageTag` the BCP-47 tag of that language
+    data class LanguageSettings(
+        val language: String,
+        val languageTag: String
+    )
+
+    private fun getLanguageFromPreferences(context: Context): LanguageSettings {
+      val defaults = LanguageSettings(DEFAULT_LANGUAGE, DEFAULT_LANGUAGE_TAG)
+      val sharedPreferences = context.getSharedPreferences("${context.packageName}.settings", Context.MODE_PRIVATE)
+      val settingsString = sharedPreferences.getString("settings", null) ?: return defaults
+      try {
+        val settingsJson = JSONObject(settingsString)
+        val settingsObject = settingsJson.optJSONObject("settings") ?: settingsJson
+        val language = settingsObject.optString("language", DEFAULT_LANGUAGE).ifEmpty { DEFAULT_LANGUAGE }
+        val languageTag = settingsObject.optString("languageTag", "").ifEmpty {
+            if (language == DEFAULT_LANGUAGE) DEFAULT_LANGUAGE_TAG else language
+        }
+        return LanguageSettings(language, languageTag)
+      } catch (e: Exception) {
+          e.printStackTrace()
+          return defaults
+      }
+    }
+
+    // Resources resolved for the app language instead of the system language. The
+    // notification texts live in res/values[-b+<code>]/strings_notifications.xml,
+    // generated from locales/<code>/notifications.json by plugins/withNotificationLocales.js
+    private fun getLocalizedResources(languageTag: String): Resources {
+        return try {
+            val configuration = Configuration(resources.configuration)
+            configuration.setLocale(Locale.forLanguageTag(languageTag))
+            createConfigurationContext(configuration).resources
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to load resources for language $languageTag, using default resources", e)
+            resources
+        }
     }
 
     private fun getTtsNotificationsEnabledFromPreferences(context: Context): Boolean {
@@ -157,8 +200,11 @@ class MessagingService : FirebaseMessagingService(), OnInitListener {
         val amount = notification.optInt("amount", 0) / 1000
         val transaction = notification.toString()
 
+        val languageSettings = getLanguageFromPreferences(this)
+        val localized = getLocalizedResources(languageSettings.languageTag)
+        val unit = localized.getQuantityString(R.plurals.notification_sats, amount)
         val bitcoinDisplayMode = getBitcoinDisplayModeFromPreferences(this)
-        val formattedAmount = if (bitcoinDisplayMode == "bip177") "₿ $amount" else "$amount sats"
+        val formattedAmount = if (bitcoinDisplayMode == "bip177") "₿ $amount" else "$amount $unit"
 
         val description = notification.optString("description", "")
             .takeIf { it != "null" }.orEmpty()
@@ -170,9 +216,9 @@ class MessagingService : FirebaseMessagingService(), OnInitListener {
         val hasDescription = descriptionText.isNotEmpty()
 
         val action = when (notificationType) {
-            "payment_sent" -> "Sent"
-            "payment_received" -> "Received"
-            "hold_invoice_accepted" -> "Payment Held:"
+            "payment_sent" -> localized.getString(R.string.notification_sent)
+            "payment_received" -> localized.getString(R.string.notification_received)
+            "hold_invoice_accepted" -> localized.getString(R.string.notification_payment_held)
             else -> ""
         }
 
@@ -213,7 +259,7 @@ class MessagingService : FirebaseMessagingService(), OnInitListener {
         notificationManager.notify(notificationId, notificationBuilder.build())
 
         if (notificationType == "payment_received") {
-            var ttsMessage = "$amount sat"
+            var ttsMessage = "$amount $unit"
             if (ttsReady) {
                 speakOut(ttsMessage)
             } else {
@@ -228,10 +274,20 @@ class MessagingService : FirebaseMessagingService(), OnInitListener {
             Log.i(TAG, "TTS notifications disabled, skipping")
             return
         }
+        setTtsLanguage(getLanguageFromPreferences(this).languageTag)
         Log.i(TAG, "Speaking: $text")
         val result = tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
         if (result == TextToSpeech.ERROR) {
             Log.e(TAG, "Error occurred while trying to speak: $text")
+        }
+    }
+
+    private fun setTtsLanguage(languageTag: String) {
+        val locale = Locale.forLanguageTag(languageTag)
+        val result = tts.setLanguage(locale)
+        if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+            Log.e(TAG, "Failed to find TTS language $locale: $result, falling back to US Locale")
+            tts.setLanguage(Locale.US)
         }
     }
 
