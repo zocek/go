@@ -1,0 +1,49 @@
+{
+  "dateTimeFormat": "D. M. YYYY HH:mm",
+  "title": "Transakce",
+  "loadingMore": "Načítání dalších transakcí",
+  "empty": {
+    "title": "Zatím žádné transakce",
+    "description": "Pro začátek si dobijte peněženku",
+    "receive": "Přijmout"
+  },
+  "status": {
+    "received": "Přijato",
+    "receiving": "Přijímá se",
+    "sent": "Odesláno",
+    "sending": "Odesílá se",
+    "failed": "Selhalo"
+  },
+  "item": {
+    "from": "od {{name}}",
+    "zapFrom": "zap od {{npub}}...",
+    "to": "pro {{recipient}}",
+    "paymentTo": "odeslání pro {{recipient}}"
+  },
+  "detail": {
+    "title": "Transakce",
+    "loadFailed": "Nepodařilo se načíst transakci",
+    "openFailed": "Nepodařilo se otevřít transakci",
+    "invalidData": "Neplatná data transakce",
+    "to": "Příjemce",
+    "from": "Odesílatel",
+    "dateTime": "Datum a čas",
+    "nostrZap": "Nostr Zap",
+    "zapFrom": "Od {{npub}}",
+    "fee": "Poplatek",
+    "feeValue": "{{amount}} ({{percent}} %)",
+    "paymentHash": "Payment hash",
+    "preimage": "Preimage",
+    "metadata": "Metadata",
+    "boostagram": {
+      "message": "Zpráva",
+      "podcast": "Podcast",
+      "episode": "Epizoda",
+      "action": "Akce",
+      "timestamp": "Časová značka",
+      "totalAmount": "Celková částka",
+      "sender": "Odesílatel",
+      "app": "Aplikace"
+    }
+  }
+}

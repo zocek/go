@@ -1,0 +1,11 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Povolte aplikaci Alby Go používat fotoaparát ke skenování QR kódů pro připojení peněženky a platby",
+    "NSFaceIDUsageDescription": "Povolte aplikaci Alby Go používat Face ID.",
+    "NSPhotoLibraryUsageDescription": "Povolte aplikaci Alby Go přístup k fotkám pro načtení QR kódů faktur a lightning adres",
+    "NSMicrophoneUsageDescription": "Povolte aplikaci Alby Go přístup k mikrofonu",
+    "NSLocationWhenInUseUsageDescription": "Povolte aplikaci Alby Go přístup k vaší poloze",
+    "NSLocationAlwaysAndWhenInUseUsageDescription": "Povolte aplikaci Alby Go přístup k vaší poloze",
+    "NSLocationAlwaysUsageDescription": "Povolte aplikaci Alby Go přístup k vaší poloze"
+  }
+}

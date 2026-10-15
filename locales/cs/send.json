@@ -1,0 +1,69 @@
+{
+  "title": "Odeslat",
+  "scan": {
+    "cameraRollPermission": "Povolte přístup ke galerii",
+    "noQrCodeTitle": "QR kód nenalezen",
+    "noQrCodeMessage": "Ve vybraném obrázku se nepodařilo najít QR kód.",
+    "scanImageErrorTitle": "Chyba při skenování obrázku",
+    "scanImageErrorMessage": "Při hledání QR kódu v obrázku došlo k chybě.",
+    "import": "Importovat",
+    "address": "Adresa"
+  },
+  "address": {
+    "title": "Odeslat na adresu",
+    "placeholder": "hello@getalby.com",
+    "addToContacts": "Přidat do kontaktů",
+    "contactNamePlaceholder": "Satoshi Nakamoto",
+    "addressBook": "Adresář",
+    "noMatchingEntries": "Žádné odpovídající položky."
+  },
+  "confirm": {
+    "title": "Potvrdit platbu",
+    "sendLabel": "Odeslat",
+    "pendingPaymentsTitle": "Jedna nebo více čekajících plateb",
+    "pendingPaymentsDescription": "Před zaplacením zkontrolujte seznam transakcí, abyste platbu neodeslali dvakrát.",
+    "pay": "Zaplatit",
+    "failed": "Platbu se nepodařilo odeslat"
+  },
+  "lnurlPay": {
+    "fixedAmountInvoice": "Platíte fakturu s pevnou částkou",
+    "requestInvoiceFailed": "Nepodařilo se vyžádat fakturu"
+  },
+  "success": {
+    "title": "Hotovo"
+  },
+  "successMessage": {
+    "title": "Zpráva od příjemce",
+    "openLink": "Otevřít odkaz"
+  },
+  "receiver": {
+    "to": "Komu"
+  },
+  "scanner": {
+    "permissionDeniedTitle": "Přístup k fotoaparátu zamítnut",
+    "permissionDeniedDescription": "Zdá se, že jste zamítli přístup k fotoaparátu. Přístup bude pravděpodobně nutné znovu povolit v nastavení zařízení."
+  },
+  "amountInput": {
+    "addDescription": "Přidat popis",
+    "descriptionPlaceholder": "Saty pro Satoshiho",
+    "min": "Min. {{amount}}",
+    "max": "Max. {{amount}}",
+    "between": "Mezi {{min}} a {{max}}",
+    "notLessThan": "Nesmí být méně než {{min}}",
+    "notMoreThan": "Nesmí být více než {{max}}",
+    "maximumAmount": "Maximální částka je {{amount}}",
+    "invalidClipboardAmount": "Schránka neobsahuje platnou částku.",
+    "clipboardReadFailed": "Nepodařilo se přečíst schránku."
+  },
+  "lnurl": {
+    "nonOkResponse": "Požadavek na {{url}} vrátil chybovou odpověď: {{status}}",
+    "error": "Chyba LNURL: {{reason}}",
+    "connectionProblem": "Problém s připojením nebo neplatná LNURL / lightning adresa: {{reason}}",
+    "missingInvoice": "V odpovědi LNURL callbacku chybí pr"
+  },
+  "paymentFlow": {
+    "noLightningParam": "Bitcoinový platební odkaz neobsahuje parametr lightning",
+    "lnurlTagNotSupported": "Tento typ LNURL není podporován",
+    "failed": "Nepodařilo se načíst platbu"
+  }
+}

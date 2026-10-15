@@ -1,0 +1,111 @@
+{
+  "common": {
+    "defaultName": "Výchozí peněženka",
+    "walletNotFound": "Peněženka nenalezena",
+    "insecureRelayTitle": "Nezabezpečený relay",
+    "insecureRelayDescription_one": "{{relays}} nepoužívá zabezpečené (wss) připojení.",
+    "insecureRelayDescription_few": "{{relays}} nepoužívají zabezpečené (wss) připojení.",
+    "insecureRelayDescription_many": "{{relays}} nepoužívají zabezpečené (wss) připojení.",
+    "insecureRelayDescription_other": "{{relays}} nepoužívají zabezpečené (wss) připojení.",
+    "missingCapabilities": "Chybějící oprávnění: {{capabilities}}"
+  },
+  "manage": {
+    "title": "Správa peněženek",
+    "switched": "Peněženka přepnuta",
+    "currentWalletSet": "Aktuální peněženka: {{name}}",
+    "connectWallet": "Připojit peněženku"
+  },
+  "switcher": {
+    "title": "Přepnout peněženku",
+    "switchedTo": "Peněženka přepnuta na {{name}}"
+  },
+  "setup": {
+    "title": "Připojit peněženku",
+    "connecting": "Připojování k peněžence",
+    "scanHint": "Naskenujte tajný kód připojení NWC pro přidání peněženky",
+    "connectionSuccessful": "Připojení bylo úspěšné",
+    "setWalletNameToFinish": "Pro dokončení zadejte název peněženky",
+    "connectFailed": "Nepodařilo se připojit k peněžence",
+    "walletConnected": "Peněženka připojena",
+    "walletReady": "Vaše lightning peněženka je připravena k použití",
+    "walletName": "Název peněženky",
+    "walletNamePlaceholder": "Zadejte název peněženky",
+    "alreadyHaveTitle": "Tuto peněženku už možná máte",
+    "alreadyHaveDescription": "Peněženka s touto lightning adresou nebo s tímto připojením je už nastavena.",
+    "mightNotWorkTitle": "Alby Go nemusí fungovat správně"
+  },
+  "edit": {
+    "title": "Upravit peněženku",
+    "deleting": "Odstraňování peněženky",
+    "mightNotWorkTitle": "Tato peněženka nemusí fungovat správně",
+    "exportWallet": "Exportovat peněženku",
+    "exportMessage": "Tajný kód připojení peněženky se zkopíruje do schránky a můžete ho přidat do jiné aplikace. Pro správu oprávnění jednotlivých aplikací vyzkoušejte Alby Hub nebo přidejte tajný kód připojení peněženky do účtu Alby Account.",
+    "cannotExportTitle": "Peněženku nelze exportovat",
+    "cannotExportMessage": "Tato peněženka podporuje autorizaci nových připojení a nelze ji exportovat. Vytvořte místo toho nové připojení v Alby Hubu",
+    "authenticateToExport": "Pro export peněženky se ověřte",
+    "authenticateFailed": "Ověření se nezdařilo",
+    "secretCopied": "Tajný kód připojení zkopírován do schránky",
+    "deleteWallet": "Smazat peněženku",
+    "removeTitle": "Odebrat připojení peněženky",
+    "removeMessage": "Opravdu chcete odebrat toto připojení peněženky? Tuto akci nelze vrátit zpět."
+  },
+  "rename": {
+    "title": "Název peněženky",
+    "updated": "Název peněženky byl změněn"
+  },
+  "lightningAddress": {
+    "title": "Lightning adresa",
+    "onlyOwnTitle": "Přidávejte jen lightning adresu, kterou vlastníte",
+    "onlyOwnDescription": "Tato funkce nevytváří novou lightning adresu. Přidá existující adresu na vaši obrazovku Přijmout.",
+    "updated": "Lightning adresa byla změněna"
+  },
+  "connectionInfo": {
+    "title": "Informace o připojení",
+    "relays": "Relaye",
+    "lightningAddress": "Lightning adresa",
+    "capabilities": "Oprávnění",
+    "appPubkey": "Veřejný klíč aplikace",
+    "walletPubkey": "Veřejný klíč peněženky"
+  },
+  "help": {
+    "title": "Jak se připojit?",
+    "intro": "Podle těchto kroků připojíte Alby Go ke svému Hubu:",
+    "step1": "1. Otevřete svůj Alby Hub",
+    "step2": "2. Přejděte do App Store » Alby Go",
+    "step3": "3. Naskenujte QR kód touto aplikací"
+  },
+  "connectApp": {
+    "title": "Připojit aplikaci",
+    "connectedTitle": "Aplikace připojena",
+    "openUrlFailed": "Nepodařilo se otevřít URL, máte aplikaci nainstalovanou?",
+    "createFailed": "Nepodařilo se vytvořit aplikaci",
+    "notSupported": "Toto připojení peněženky nepodporuje funkci One Tap Connections.",
+    "switchWallet": "Přepněte peněženku a zkuste to znovu.",
+    "reconnectFromHub": "Připojte Alby Go znovu z Alby Hubu tlačítkem „One Tap Connections“.",
+    "confirmConnection": "Potvrdit připojení",
+    "redirectNotice": "Po potvrzení budete přesměrováni na <bold>{{returnTo}}</bold>.",
+    "connectionDetails": "Podrobnosti připojení",
+    "requestedMethods": "Požadované metody",
+    "allMethods": "všechny metody",
+    "notificationTypes": "Typy oznámení",
+    "isolatedConnection": "Izolované připojení",
+    "yes": "Ano",
+    "expiry": "Platnost do",
+    "metadata": "Metadata",
+    "requestingAccess": "<bold>{{name}}</bold> žádá o přístup k vašemu <bold>Alby Hubu</bold>.",
+    "requestingReceiveOnlyAccess": "<bold>{{name}}</bold> žádá o přístup <bold>pouze pro příjem</bold> k vašemu <bold>Alby Hubu</bold>.",
+    "budget": "rozpočet",
+    "renewingBudget": "<period>{{period}} </period>rozpočet",
+    "budgetRenewal": {
+      "daily": "denní",
+      "weekly": "týdenní",
+      "monthly": "měsíční",
+      "yearly": "roční"
+    },
+    "editPermissionsHint": "Oprávnění můžete kdykoli upravit a přístup zrušit v nastavení svého Alby Hubu.",
+    "connected": "Připojeno!",
+    "redirecting": "Přesměrování za {{seconds}} s...",
+    "returningHome": "Návrat na domovskou obrazovku za {{seconds}} s...",
+    "newApp": "Nová aplikace"
+  }
+}
