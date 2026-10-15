@@ -1,0 +1,15 @@
+{
+  "unknown": "Došlo k neznámé chybě",
+  "checkConnection": "Zkontrolujte připojení k internetu nebo zkuste Alby Go restartovat",
+  "unsupportedLink": "Nepodporovaný odkaz",
+  "nwcRequestFailed": "Požadavek NWC se nezdařil",
+  "clipboardEmpty": "Vaše schránka je prázdná.",
+  "clipboardReadFailed": "Nepodařilo se přečíst schránku",
+  "notifications": {
+    "setupFailed": "Nepodařilo se nastavit oznámení",
+    "fcmUnavailable": "FCM není dostupné nebo neodpovídá",
+    "physicalDeviceRequired": "Push oznámení vyžadují fyzické zařízení",
+    "enableInSettings": "Povolte oznámení aplikace v nastavení zařízení",
+    "projectIdNotFound": "ID projektu nebylo nalezeno"
+  }
+}

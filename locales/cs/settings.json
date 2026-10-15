@@ -1,0 +1,65 @@
+{
+  "main": {
+    "title": "Nastavení",
+    "wallets": "Peněženky"
+  },
+  "theme": {
+    "title": "Vzhled",
+    "light": "Světlý",
+    "dark": "Tmavý"
+  },
+  "language": {
+    "title": "Jazyk",
+    "description": "Zvolte, jaký jazyk má aplikace používat.",
+    "systemDefault": "Podle systému",
+    "updated": "Jazyk byl změněn"
+  },
+  "developer": {
+    "title": "Vývojářský režim",
+    "signOut": "Odhlásit se",
+    "openOnboarding": "Otevřít uvítání",
+    "resetWallet": "Resetovat peněženku",
+    "resetTitle": "Reset",
+    "resetMessage": "Opravdu chcete provést reset? Budete odhlášeni ze všech svých peněženek. Tajné kódy připojení a adresář budou ztraceny.",
+    "nowDeveloper": "Nyní jste vývojář",
+    "tapMore": "Klepněte ještě {{remaining}}krát"
+  },
+  "unitsAndCurrency": {
+    "title": "Jednotky a měna"
+  },
+  "bitcoinUnits": {
+    "title": "Jednotky bitcoinu",
+    "description": "Zvolte, v jakých jednotkách se mají částky v bitcoinu v aplikaci zobrazovat.",
+    "sats": "sats",
+    "updated": "Jednotka bitcoinu byla změněna"
+  },
+  "fiatCurrency": {
+    "title": "Fiat měna",
+    "display": "Zobrazovat fiat měnu",
+    "updated": "Fiat měna byla změněna",
+    "loadFailed": "Nepodařilo se načíst seznam měn"
+  },
+  "notifications": {
+    "title": "Oznámení",
+    "showAppNotifications": "Zobrazovat oznámení aplikace",
+    "chooseWallets": "Zvolte, ze kterých peněženek chcete dostávat oznámení aplikace",
+    "spokenNotifications": "Hlasová oznámení",
+    "deregisterFailed": "Nepodařilo se odhlásit oznámení, zkuste to znovu",
+    "noCapability": "{{name}} nemá oprávnění pro oznámení",
+    "pushTokenNotSet": "Push token není nastaven",
+    "httpError": "Chyba: {{status}} {{statusText}}",
+    "saveWalletDataFailed": "Nepodařilo se uložit data peněženky",
+    "registerFailed": "Nepodařilo se zaregistrovat oznámení",
+    "deregisterPushFailed": "Nepodařilo se odhlásit push oznámení"
+  },
+  "security": {
+    "title": "Zabezpečení",
+    "setupTitle": "Nastavte zabezpečení zařízení",
+    "setupDescription": "Pro ochranu peněženky nejprve nastavte zámek telefonu v nastavení zařízení.",
+    "requirePhoneLock": "Vyžadovat zámek telefonu pro přístup"
+  },
+  "addressBook": {
+    "title": "Adresář",
+    "noEntries": "Zatím žádné kontakty."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "receive": "Přijmout",
+  "send": "Odeslat",
+  "albyBanner": {
+    "title": "✨ Baví vás Alby Go?",
+    "description": "Podpořte náš vývoj a pomozte nám růst a zlepšovat se."
+  },
+  "wildcard": {
+    "loading": "Načítání"
+  }
+}

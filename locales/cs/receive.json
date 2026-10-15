@@ -1,0 +1,46 @@
+{
+  "title": "Přijmout",
+  "redeem": "Vybrat",
+  "nothingToCopy": "Není co kopírovat",
+  "invoice": {
+    "title": "Faktura"
+  },
+  "createInvoice": {
+    "zeroAmountNotSupported": "Faktury bez částky nejsou podporovány",
+    "failed": "Nepodařilo se vytvořit fakturu",
+    "noInvoiceSet": "Není nastavena žádná faktura",
+    "waitingForPayment": "Čekání na platbu",
+    "createButton": "Vytvořit fakturu"
+  },
+  "lightningAddress": {
+    "title": "Lightning adresa",
+    "description": "Přiřaďte k této peněžence svou lightning adresu a zobrazujte ji jako QR kód pro rychlé transakce tváří v tvář",
+    "getNewAddress": "Získat novou adresu",
+    "addExisting": "Přidat existující"
+  },
+  "albyAccount": {
+    "title": "Získat Alby Account",
+    "heading": "Získejte lightning adresu s účtem Alby Account",
+    "features": {
+      "lightningAddress": "Lightning adresa a Nostr identifikátor,",
+      "tippingPage": "Osobní stránka pro spropitné,",
+      "podcasting": "Přístup k aplikacím Podcasting 2.0,",
+      "buyBitcoin": "Nákup bitcoinu přímo do vaší peněženky,",
+      "emailNotifications": "Užitečná e-mailová oznámení o peněžence,",
+      "prioritySupport": "Prioritní podpora."
+    },
+    "getAccountButton": "Získat Alby Account"
+  },
+  "success": {
+    "title": "Hotovo"
+  },
+  "withdraw": {
+    "title": "Vybrat",
+    "scanHint": "Naskenujte LNURL QR kód pro výběr",
+    "confirmWithdrawal": "Potvrdit výběr",
+    "tagNotSupported": "LNURL tag {{tag}} není podporován",
+    "invalidLnurl": "Neplatná LNURL",
+    "loadFailed": "Nepodařilo se načíst informace o výběru",
+    "failed": "Výběr se nezdařil"
+  }
+}

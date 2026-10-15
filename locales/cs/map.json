@@ -1,0 +1,10 @@
+{
+  "title": "Bitcoinová mapa",
+  "loading": "Načítání BTC Map",
+  "locationPermission": "Povolte přístup k poloze",
+  "modal": {
+    "description1": "BTC Map je open-source projekt, jehož cílem je zmapovat a udržovat přehled všech obchodníků na světě, kteří přijímají bitcoin.",
+    "description2": "Najděte obchodníky ve svém okolí, plaťte za zboží a služby a pomozte mapu vylepšit svými příspěvky!",
+    "visit": "Navštívit btcmap.org"
+  }
+}
