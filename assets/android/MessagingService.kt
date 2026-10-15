@@ -129,7 +129,10 @@ class MessagingService : FirebaseMessagingService(), OnInitListener {
       val settingsString = sharedPreferences.getString("settings", null) ?: return false
       try {
         val settingsJson = JSONObject(settingsString)
-        val ttsEnabledString = settingsJson.optString("ttsEnabled")
+        // the app stores its settings nested under a "settings" key (see
+        // lib/notificationsNativeStorage.ts); older mirrors kept them at the top level
+        val settingsObject = settingsJson.optJSONObject("settings") ?: settingsJson
+        val ttsEnabledString = settingsObject.optString("ttsEnabled")
         return ttsEnabledString == "true"
       } catch (e: Exception) {
           e.printStackTrace()
